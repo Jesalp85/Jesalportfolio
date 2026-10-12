@@ -398,6 +398,9 @@ async function handleContactSubmit(e) {
   );
   const waUrl = `https://wa.me/919769104020?text=${waText}`;
 
+  let emailDelivered = false;
+  let needsActivation = false;
+
   try {
     // 1. Submit to Netlify Forms (when hosted on Netlify)
     const formData = new FormData(form);
@@ -409,7 +412,7 @@ async function handleContactSubmit(e) {
     }).catch(() => {});
 
     // 2. Submit to FormSubmit AJAX for direct email delivery to jesalp85@gmail.com
-    await fetch('https://formsubmit.co/ajax/jesalp85@gmail.com', {
+    const res = await fetch('https://formsubmit.co/ajax/jesalp85@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -417,20 +420,32 @@ async function handleContactSubmit(e) {
       },
       body: JSON.stringify({
         _subject: `New Portfolio Inquiry from ${name} (${projectType})`,
+        _template: 'table',
+        _captcha: 'false',
         Name: name,
         Contact: contact,
         Project_Type: projectType,
         Message: message
       })
-    }).catch(() => {});
+    });
+    const data = await res.json();
+    if (data && (data.success === 'true' || data.success === true)) {
+      emailDelivered = true;
+    } else if (data && data.message && data.message.toLowerCase().includes('activation')) {
+      needsActivation = true;
+    }
   } catch (err) {
     // Continue to confirmation UI even if offline
   }
 
   if (feedback) {
     feedback.className = 'form-feedback success';
+    const statusNote = needsActivation
+      ? `<div style="color: var(--accent-gold); margin-top: 0.35rem; font-size: 0.8rem;">⚠️ One-time setup: Check <strong>jesalp85@gmail.com</strong> (Inbox / Spam / Updates) and click <strong>"Activate Form"</strong> from FormSubmit so future emails arrive directly!</div>`
+      : `<div>✓ Thank you, <strong>${name}</strong>! Your message has been emailed to <strong>jesalp85@gmail.com</strong>.</div>`;
+
     feedback.innerHTML = `
-      <div>✓ Thank you, <strong>${name}</strong>! Your inquiry has been logged.</div>
+      ${statusNote}
       <div style="margin-top: 0.55rem;">
         <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem; color: #05140d; background: var(--accent-primary); padding: 0.35rem 0.75rem; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 0.8rem;">
           <i class="fa-brands fa-whatsapp"></i> Also Send Instantly on WhatsApp

@@ -738,33 +738,34 @@
               </div>
             </div>
 
-            <!-- Interactive Message Form -->
+            <!-- Interactive Message Form (Netlify Forms + Direct Email/WhatsApp) -->
             <div class="contact-form-col">
-              <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+              <form class="contact-form" id="contactForm" name="portfolio-contact" method="POST" data-netlify="true" onsubmit="handleContactSubmit(event)">
+                <input type="hidden" name="form-name" value="portfolio-contact">
                 <div class="form-group">
                   <label for="senderName">Your Name / Company *</label>
-                  <input type="text" id="senderName" class="form-control" placeholder="e.g. Rahul Sharma / Acme D2C" required>
+                  <input type="text" id="senderName" name="name" class="form-control" placeholder="e.g. Rahul Sharma / Acme D2C" required>
                 </div>
 
                 <div class="form-group">
                   <label for="senderContact">Email or WhatsApp Number *</label>
-                  <input type="text" id="senderContact" class="form-control" placeholder="e.g. hello@brand.com or +91 9876543210" required>
+                  <input type="text" id="senderContact" name="contact" class="form-control" placeholder="e.g. hello@brand.com or +91 9876543210" required>
                 </div>
 
                 <div class="form-group">
                   <label for="projectType">Project / Discussion Type</label>
-                  <select id="projectType" class="form-control">
-                    <option value="shopify">Shopify 2.0 Theme Build</option>
-                    <option value="custom">Custom Web Development</option>
-                    <option value="landing">High-Speed Landing Page (2-3 Days)</option>
-                    <option value="job">Full-Time / Contract Developer Role</option>
-                    <option value="other">General Inquiry</option>
+                  <select id="projectType" name="projectType" class="form-control">
+                    <option value="Shopify 2.0 Theme Build">Shopify 2.0 Theme Build</option>
+                    <option value="Custom Web Development">Custom Web Development</option>
+                    <option value="High-Speed Landing Page (2-3 Days)">High-Speed Landing Page (2-3 Days)</option>
+                    <option value="Full-Time / Contract Developer Role">Full-Time / Contract Developer Role</option>
+                    <option value="General Inquiry">General Inquiry</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="senderMessage">Message / Project Brief *</label>
-                  <textarea id="senderMessage" rows="4" class="form-control" placeholder="Tell me about your timeline, design file, or goals..." required></textarea>
+                  <textarea id="senderMessage" name="message" rows="4" class="form-control" placeholder="Tell me about your timeline, design file, or goals..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-full btn-submit" id="btnSubmitForm">

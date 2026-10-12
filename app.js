@@ -374,30 +374,76 @@ function closeMobileMenu() {
 }
 
 /**
- * Contact Form Handler
+ * Contact Form Handler (Netlify Forms + Direct Email to jesalp85@gmail.com + WhatsApp Dispatch)
  */
-function handleContactSubmit(e) {
+async function handleContactSubmit(e) {
   e.preventDefault();
+  const form = document.getElementById('contactForm');
   const feedback = document.getElementById('formFeedback');
   const submitBtn = document.getElementById('btnSubmitForm');
-  const name = document.getElementById('senderName').value;
+
+  const name = document.getElementById('senderName').value.trim();
+  const contact = document.getElementById('senderContact').value.trim();
+  const projectType = document.getElementById('projectType').value;
+  const message = document.getElementById('senderMessage').value.trim();
 
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
   }
 
-  setTimeout(() => {
-    if (feedback) {
-      feedback.className = 'form-feedback success';
-      feedback.innerHTML = `✓ Thank you, ${name}! Your message has been received. I will reply via WhatsApp/Email within 12 hours.`;
-    }
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<span>Message Sent Successfully</span> <i class="fa-solid fa-check"></i>';
-    }
-    document.getElementById('contactForm').reset();
-  }, 1000);
+  // Build pre-filled WhatsApp & Email fallback URLs
+  const waText = encodeURIComponent(
+    `Hi Jesal! 👋\n\n*Name:* ${name}\n*Contact:* ${contact}\n*Topic:* ${projectType}\n*Message:* ${message}`
+  );
+  const waUrl = `https://wa.me/919769104020?text=${waText}`;
+
+  try {
+    // 1. Submit to Netlify Forms (when hosted on Netlify)
+    const formData = new FormData(form);
+    const urlEncoded = new URLSearchParams(formData).toString();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: urlEncoded
+    }).catch(() => {});
+
+    // 2. Submit to FormSubmit AJAX for direct email delivery to jesalp85@gmail.com
+    await fetch('https://formsubmit.co/ajax/jesalp85@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: `New Portfolio Inquiry from ${name} (${projectType})`,
+        Name: name,
+        Contact: contact,
+        Project_Type: projectType,
+        Message: message
+      })
+    }).catch(() => {});
+  } catch (err) {
+    // Continue to confirmation UI even if offline
+  }
+
+  if (feedback) {
+    feedback.className = 'form-feedback success';
+    feedback.innerHTML = `
+      <div>✓ Thank you, <strong>${name}</strong>! Your inquiry has been logged.</div>
+      <div style="margin-top: 0.55rem;">
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.4rem; color: #05140d; background: var(--accent-primary); padding: 0.35rem 0.75rem; border-radius: 6px; font-weight: 700; text-decoration: none; font-size: 0.8rem;">
+          <i class="fa-brands fa-whatsapp"></i> Also Send Instantly on WhatsApp
+        </a>
+      </div>
+    `;
+  }
+
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<span>Message Sent Successfully</span> <i class="fa-solid fa-check"></i>';
+  }
+  if (form) form.reset();
 }
 
 /**

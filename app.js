@@ -694,26 +694,42 @@ function initScrollAnimations() {
       }
     }
 
-    // Apply Hero 3D Scroll Parallax while Hero is in viewport
-    if (scrollY < window.innerHeight * 1.1 && window.innerWidth > 900) {
-      const ratio = scrollY / window.innerHeight;
+    // Apply Hero 3D Scroll Parallax on Desktop (> 1024px); reset cleanly on Tablet/Mobile
+    if (window.innerWidth > 1024) {
+      if (scrollY < window.innerHeight * 1.1) {
+        const ratio = scrollY / window.innerHeight;
+        if (heroTextCol) {
+          heroTextCol.style.transform = `translate3d(0, ${scrollY * -0.18}px, 0)`;
+          heroTextCol.style.opacity = `${Math.max(0.15, 1 - ratio * 1.15)}`;
+        }
+        if (heroCard3D) {
+          const rotX = ratio * 14;
+          const rotY = ratio * -12;
+          const translateY = scrollY * -0.08;
+          heroCard3D.style.transform = `perspective(1400px) translateY(${translateY}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        }
+        if (scrollIndicator) {
+          scrollIndicator.style.opacity = `${Math.max(0, 1 - ratio * 3)}`;
+        }
+      }
+    } else {
       if (heroTextCol) {
-        heroTextCol.style.transform = `translate3d(0, ${scrollY * -0.18}px, 0)`;
-        heroTextCol.style.opacity = `${Math.max(0.15, 1 - ratio * 1.15)}`;
+        heroTextCol.style.transform = '';
+        heroTextCol.style.opacity = '';
       }
       if (heroCard3D) {
-        const rotX = ratio * 14;
-        const rotY = ratio * -12;
-        const translateY = scrollY * -0.08;
-        heroCard3D.style.transform = `perspective(1400px) translateY(${translateY}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        heroCard3D.style.transform = '';
       }
       if (scrollIndicator) {
-        scrollIndicator.style.opacity = `${Math.max(0, 1 - ratio * 3)}`;
+        scrollIndicator.style.opacity = '';
       }
     }
   }
 
   window.addEventListener('scroll', () => {
+    requestAnimationFrame(handleScrollFrame);
+  }, { passive: true });
+  window.addEventListener('resize', () => {
     requestAnimationFrame(handleScrollFrame);
   }, { passive: true });
   handleScrollFrame();

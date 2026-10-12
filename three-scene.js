@@ -504,10 +504,12 @@ function setupCanvas3DFallback() {
  * ============================================================================
  */
 function setup3DCardTilt() {
+  const isTouchOrSmall = () => window.innerWidth <= 1024 || !window.matchMedia('(hover: hover)').matches;
   const tiltElements = document.querySelectorAll('[data-tilt], .project-card, .service-row, .about-card');
 
   tiltElements.forEach(el => {
     el.addEventListener('mousemove', (e) => {
+      if (isTouchOrSmall()) return;
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -522,22 +524,34 @@ function setup3DCardTilt() {
     });
 
     el.addEventListener('mouseleave', () => {
+      if (isTouchOrSmall()) return;
       el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
       el.style.transition = 'transform 0.4s ease';
     });
 
     el.addEventListener('mouseenter', () => {
+      if (isTouchOrSmall()) return;
       el.style.transition = 'none';
     });
   });
 
-  // Hero Card Specialized 3D Tilt
+  // Hero Card Specialized 3D Tilt (Desktop Hover Only)
   const heroCard = document.getElementById('heroCard3D');
   if (heroCard) {
     document.addEventListener('mousemove', (e) => {
+      if (isTouchOrSmall()) {
+        heroCard.style.transform = '';
+        return;
+      }
       const x = (e.clientX / window.innerWidth) - 0.5;
       const y = (e.clientY / window.innerHeight) - 0.5;
-      heroCard.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
+      heroCard.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 14}deg)`;
+    });
+
+    window.addEventListener('resize', () => {
+      if (isTouchOrSmall()) {
+        heroCard.style.transform = '';
+      }
     });
   }
 }

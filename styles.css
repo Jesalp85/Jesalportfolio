@@ -2628,19 +2628,59 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (TABLETS & MOBILE)
+   COMPREHENSIVE RESPONSIVE DESIGN (ALL DEVICES: DESKTOP, TABLET, MOBILE)
    ========================================================================== */
 
-@media (max-width: 1024px) {
+/* Prevent any grid/flex child from forcing horizontal overflow */
+.hero-content,
+.hero-3d-showcase,
+.card-glass-panel,
+.interactive-preview-box,
+.service-left,
+.service-right,
+.project-card,
+.tech-category,
+.code-terminal-wrapper,
+.contact-info-col,
+.contact-form-col {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Mobile Drawer Safe Width on All Phones */
+.mobile-drawer {
+  width: min(320px, 86vw);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .cursor-trail {
+    display: none !important;
+  }
+}
+
+/* 1. Small Laptops & Landscape Tablets (<= 1200px) */
+@media (max-width: 1200px) {
+  .desktop-nav .nav-links {
+    gap: 1.35rem;
+  }
+
+  .status-indicator {
+    display: none;
+  }
+
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.25rem;
   }
 
-  .hero-title {
-    font-size: 2.85rem;
+  .projects-grid {
+    gap: 1.5rem;
   }
+}
 
+/* 2. Tablets & iPads (<= 1024px) */
+@media (max-width: 1024px) {
   .desktop-nav {
     display: none;
   }
@@ -2649,83 +2689,371 @@ body {
     display: flex;
   }
 
+  .section {
+    padding: 4.75rem 0;
+  }
+
+  .hero-section {
+    padding: 3rem 0 2rem;
+    min-height: auto;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.15rem, 4.5vw, 2.85rem);
+  }
+
   .service-row {
     grid-template-columns: 1fr;
     padding: 2.25rem;
     gap: 2rem;
   }
 
-  .about-grid, .projects-grid, .tech-matrix-grid, .process-steps-grid {
+  .about-grid,
+  .projects-grid,
+  .tech-matrix-grid,
+  .process-steps-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
-  .spotlight-grid, .contact-grid {
+  .spotlight-grid,
+  .contact-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+
+  .contact-card {
+    padding: 2.75rem 2.25rem;
+  }
 }
 
+/* 3. Mobile Phones & Portrait Tablets (<= 768px) */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.35rem;
+  .container {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  .nav-container {
+    height: 68px;
+  }
+
+  .section {
+    padding: 3.75rem 0;
+    scroll-margin-top: 72px;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 1.85rem;
+    line-height: 1.25;
   }
 
-  .about-grid, .projects-grid, .tech-matrix-grid, .process-steps-grid {
-    grid-template-columns: 1fr;
+  .section-subtitle {
+    font-size: 0.98rem;
   }
 
+  .hero-title {
+    font-size: clamp(1.95rem, 6.5vw, 2.45rem);
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 1.4rem;
+  }
+
+  /* Compact 3-Column Metrics Grid on Mobile */
   .hero-metrics-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
     width: 100%;
+    padding: 0.95rem 1rem;
+    text-align: center;
   }
 
   .metric-divider {
     display: none;
   }
 
-  .banner-inner {
-    flex-direction: column;
-    align-items: flex-start;
+  .metric-num {
+    font-size: 1.35rem;
+  }
+
+  .metric-lbl {
+    font-size: 0.7rem;
+  }
+
+  .hero-telemetry-dock {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .hero-live-store-card {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .live-product-visual {
+    height: 170px;
+  }
+
+  .floating-product-img {
+    max-height: 150px;
+    object-fit: contain;
+  }
+
+  .hero-code-stream {
+    overflow-x: auto;
+    font-size: 0.68rem;
+  }
+
+  .about-grid,
+  .projects-grid,
+  .tech-matrix-grid,
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .about-card,
+  .tech-category,
+  .step-card {
+    padding: 1.75rem 1.4rem;
+  }
+
+  .service-row {
+    padding: 1.65rem 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .service-title {
+    font-size: 1.45rem;
+  }
+
+  .service-desc {
+    font-size: 0.95rem;
+  }
+
+  .service-preview-card {
+    padding: 1.25rem;
+  }
+
+  .lighthouse-badges-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.65rem;
   }
 
-  .spotlight-card, .contact-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr;
+  .section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 2.25rem;
   }
 
   .filter-tab-group {
     width: 100%;
     overflow-x: auto;
     justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filter-tab-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.82rem;
+  }
+
+  .terminal-header {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .terminal-tabs {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .t-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .terminal-body {
+    padding: 1.1rem;
+    max-height: 320px;
+  }
+
+  .terminal-body code {
+    font-size: 0.76rem;
   }
 
   .trust-ticker-container {
-    margin-top: 3.5rem;
+    margin-top: 2.75rem;
+    padding: 1rem 0;
   }
 
   .ticker-label {
     display: none;
   }
 
-  .hero-live-store-card {
-    grid-template-columns: 1fr;
+  .contact-card {
+    padding: 2rem 1.25rem;
   }
 
-  .live-product-visual {
-    height: 175px;
+  .contact-header {
+    margin-bottom: 2.25rem;
   }
 
-  .hero-telemetry-dock {
+  .footer-container {
     grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  /* Case Study Modal on Mobile */
+  .modal-backdrop {
+    padding: 0.85rem;
+  }
+
+  .modal-dialog {
+    padding: 1.75rem 1.2rem;
+    max-height: 92vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+    padding-right: 2rem;
+  }
+
+  .modal-actions-bar .btn {
+    width: 100%;
+  }
+}
+
+/* 4. Small Smartphones (<= 480px: iPhone SE, Mini, Standard Mobile) */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Keep header clean & uncluttered on narrow screens */
+  .header-btn {
+    display: none;
+  }
+
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo-text .name {
+    font-size: 1.02rem;
+  }
+
+  .logo-text .role {
+    font-size: 0.66rem;
+  }
+
+  .hero-pill-badge {
+    font-size: 0.73rem;
+    padding: 0.38rem 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 1.82rem;
+  }
+
+  .hero-metrics-row {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 0.65rem;
+  }
+
+  .metric-chip {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 0.45rem;
+  }
+
+  .metric-chip:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .card-glass-panel.animated-stage-panel {
+    padding: 0.95rem;
+  }
+
+  .interactive-preview-box {
+    padding: 0.85rem;
+  }
+
+  .model-control-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .card-header-bar .badge-live {
+    display: none;
+  }
+
+  .project-thumb-box {
+    height: 200px;
+  }
+
+  .project-info-box {
+    padding: 1.25rem;
+  }
+
+  .project-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .contact-item {
+    padding: 0.85rem 1rem;
+  }
+
+  .method-val {
+    font-size: 0.85rem;
+    word-break: break-word;
+  }
+
+  .footer-links-group {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }

@@ -72,6 +72,18 @@ body {
   color: #000;
 }
 
+/* Hide Netlify Injected Floating Badge / HUD */
+#nl-hud-frame,
+#nl-badge-frame,
+iframe[id^="nl-"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
 /* Utility Layout */
 .container {
   width: 100%;

@@ -837,6 +837,16 @@
     </div>
   </div>
 
+  <!-- Suppress Netlify Injected Badge -->
+  <div id="nl-hud-frame" style="display:none!important" aria-hidden="true"></div>
+  <div id="nl-badge-frame" style="display:none!important" aria-hidden="true"></div>
+  <script>
+    try {
+      localStorage.setItem('nl-hud:public:v1', 'hidden');
+      localStorage.setItem('nl-hud:owner-private:v1', 'hidden');
+    } catch (e) {}
+  </script>
+
   <!-- CDN Scripts for 3D Three.js & Animation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

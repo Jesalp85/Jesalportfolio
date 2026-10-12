@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jesal Panchal | Shopify, Custom & Web Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Jesal Panchal - Expert Shopify 2.0 Developer, Custom Web Developer, and E-commerce Specialist. Building high-converting, lightning-fast digital storefronts.">
+  <meta name="keywords" content="Jesal Panchal, Shopify Developer, Custom Web Development, Shopify Liquid, React, Next.js, E-commerce Developer, Front-end Engineer">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <!-- Google Fonts: Cabinet Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- FontAwesome & Lucide Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dark-theme">
+  <!-- Interactive 3D Background Canvas -->
+  <div id="webgl-container" class="webgl-container" aria-hidden="true">
+    <canvas id="bg-canvas"></canvas>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+  </div>
+
+  <!-- Top Neon Scroll Progress Bar -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Custom Glow Cursor Follower -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursor-trail"></div>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header" id="header">
+    <div class="nav-container container">
+      <a href="#hero" class="brand-logo">
+        <div class="logo-mark">
+          <span class="logo-letter">JP</span>
+          <span class="logo-dot"></span>
+        </div>
+        <div class="logo-text">
+          <span class="name">Jesal Panchal</span>
+          <span class="role">Developer & E-com Architect</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Expertise</a></li>
+          <li><a href="#projects" class="nav-link">Featured Work</a></li>
+          <li><a href="#tech" class="nav-link">Tech Stack</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta-group">
+        <div class="status-indicator" title="Available for Shopify & Custom Development Roles">
+          <span class="indicator-ping"></span>
+          <span class="status-text">Available Immediately</span>
+        </div>
+        <a href="#contact" class="btn btn-primary btn-sm header-btn">
+          <span>Let's Talk</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <span class="mobile-brand">Navigation</span>
+      <button class="mobile-close" id="mobileDrawerClose" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" class="mobile-nav-link" onclick="closeMobileMenu()">Home</a></li>
+      <li><a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">About</a></li>
+      <li><a href="#services" class="mobile-nav-link" onclick="closeMobileMenu()">Expertise</a></li>
+      <li><a href="#projects" class="mobile-nav-link" onclick="closeMobileMenu()">Featured Work</a></li>
+      <li><a href="#tech" class="mobile-nav-link" onclick="closeMobileMenu()">Tech Stack</a></li>
+      <li><a href="#process" class="mobile-nav-link" onclick="closeMobileMenu()">Process</a></li>
+      <li><a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a></li>
+    </ul>
+    <div class="mobile-drawer-footer">
+      <a href="#contact" class="btn btn-outline w-full" onclick="closeMobileMenu();">
+        <i class="fa-solid fa-paper-plane"></i> Let's Discuss Your Project
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION WITH 3D INTERACTIVE CANVAS & ANIMATED STORE ENGINE -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container" id="heroParallaxContainer">
+        
+        <div class="hero-content" id="heroTextCol">
+          <div class="hero-pill-badge" data-tilt>
+            <i class="fa-brands fa-shopify icon-shopify"></i>
+            <span id="heroDynamicRole">Shopify 2.0 · Custom Dev · Web Engineering</span>
+            <span class="badge-shimmer"></span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-line-reveal">Crafting</span> <span class="text-gradient animated-gradient-text">3D Immersive</span><br>
+            <span class="hero-line-reveal">&amp; High-Converting</span><br>
+            <span class="hero-line-reveal">Digital Stores.</span>
+          </h1>
+
+          <p class="hero-description">
+            Hi, I’m <strong>Jesal Panchal</strong> — an e-commerce engineer specializing in bespoke <strong>Shopify themes</strong>, <strong>custom Liquid architecture</strong>, and high-performance <strong>full-stack web development</strong>. I bridge high-fidelity UI/UX design into lightning-fast, revenue-generating reality.
+          </p>
+
+          <!-- Animated Key Metrics Counters -->
+          <div class="hero-metrics-row" data-tilt>
+            <div class="metric-chip">
+              <span class="metric-num"><span class="counter-val" data-target="50">50</span>+</span>
+              <span class="metric-lbl">Stores Delivered</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-chip">
+              <span class="metric-num"><span class="counter-val" data-target="98">98</span>+</span>
+              <span class="metric-lbl">Speed Score</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-chip">
+              <span class="metric-num">2-3</span>
+              <span class="metric-lbl">Days Landing Turnaround</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary btn-glow magnetic-btn">
+              <span>View E-Commerce Work</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="#contact" class="btn btn-glass magnetic-btn">
+              <i class="fa-brands fa-whatsapp text-accent"></i>
+              <span>Let's Build Together</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3D Animated Holographic Storefront & Code-to-Design Stage -->
+        <div class="hero-3d-showcase" id="heroStageCol">
+          <div class="card-3d-wrap" id="heroCard3D">
+
+            <!-- Main 3D Glass Stage -->
+            <div class="card-3d-inner">
+              <div class="card-glass-panel animated-stage-panel">
+                
+                <!-- Animated Scanner Laser Beam (Design -> Live Code Morph) -->
+                <div class="stage-scanner-laser" aria-hidden="true"></div>
+
+                <!-- Floating 3D Control Bar -->
+                <div class="model-control-bar">
+                  <span class="ctrl-title">
+                    <span class="live-pulse-ring"></span>
+                    <i class="fa-solid fa-cube text-accent"></i> 3D WebGL Engine:
+                  </span>
+                  <div class="scene-buttons">
+                    <button class="btn-scene active" data-scene="core" title="Store Core Matrix">Core</button>
+                    <button class="btn-scene" data-scene="crystal" title="Luxury Polyhedron">Crystal</button>
+                    <button class="btn-scene" data-scene="particles" title="Liquid Swarm">Liquid</button>
+                  </div>
+                </div>
+
+                <!-- Non-Overlapping 3D Floating Telemetry Dock (Lighthouse 99 + Live Order Toast) -->
+                <div class="hero-telemetry-dock">
+                  <div class="hero-float-widget widget-speed">
+                    <div class="lh-mini-ring">
+                      <svg viewBox="0 0 36 36">
+                        <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="ring-fill" stroke-dasharray="99, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                      </svg>
+                      <span class="ring-num">99</span>
+                    </div>
+                    <div class="widget-meta">
+                      <strong>0.8s LCP Speed</strong>
+                      <small>Core Web Vitals</small>
+                    </div>
+                  </div>
+
+                  <div class="hero-float-widget widget-order" id="heroLiveOrderToast">
+                    <div class="toast-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                    <div class="toast-body">
+                      <strong id="toastTitle">Divyaprabha Foods · Live Order</strong>
+                      <small id="toastSub">Katka Keri 500g — ₹699 · Free Ship</small>
+                    </div>
+                    <span class="toast-time">Live</span>
+                  </div>
+                </div>
+
+                <!-- Animated Live Storefront Simulation Viewport -->
+                <div class="interactive-preview-box">
+                  <div class="card-header-bar">
+                    <div class="browser-dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <a href="https://divyaprabhafoods.com/" target="_blank" id="heroStageUrl" class="browser-url-link">
+                      <i class="fa-solid fa-lock"></i> <span>divyaprabhafoods.com</span>
+                    </a>
+                    <span class="badge-live"><i class="fa-solid fa-bolt"></i> 60 FPS 3D</span>
+                  </div>
+
+                  <!-- Animated Live Store Showcase Card -->
+                  <div class="hero-live-store-card" id="heroLiveStoreCard">
+                    <div class="live-product-visual">
+                      <div class="product-glow-pedestal"></div>
+                      <img id="heroSlideImg" src="https://cdn.shopify.com/s/files/1/0752/0904/8278/files/KatkaKeriBigfront_jpg.webp?v=1784704467" alt="Live Store Product" class="floating-product-img">
+                      <span class="floating-discount-tag" id="heroSlideBadge">Shopify 2.0</span>
+                    </div>
+
+                    <div class="live-product-details">
+                      <div class="live-brand-eyebrow" id="heroSlideEyebrow">AUTHENTIC D2C STORE</div>
+                      <h4 class="live-product-title" id="heroSlideTitle">Divyaprabha Foods</h4>
+                      
+                      <!-- Animated Variant Selector Pills -->
+                      <div class="live-variant-pills" id="heroVariantGroup">
+                        <span class="v-pill active">500g Jar</span>
+                        <span class="v-pill">250g Jar</span>
+                        <span class="v-pill">Combo Pack</span>
+                      </div>
+
+                      <!-- Animated Tiered Free Shipping Bar -->
+                      <div class="live-shipping-progress">
+                        <div class="ship-text">
+                          <span><i class="fa-solid fa-truck-fast text-accent"></i> <span id="heroShipLabel">Free Shipping Unlocked!</span></span>
+                          <strong id="heroPriceLabel">₹699</strong>
+                        </div>
+                        <div class="ship-bar-track">
+                          <div class="ship-bar-fill" id="heroShipBarFill"></div>
+                        </div>
+                      </div>
+
+                      <!-- Animated Add to Cart Action Button -->
+                      <a href="https://divyaprabhafoods.com/" target="_blank" class="live-atc-btn" id="heroSlideCta">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="heroAtcText">Add to Ajax Cart — ₹699</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Real-Time Code-to-UI Typewriter Stream -->
+                  <div class="hero-code-stream">
+                    <span class="stream-prompt"><i class="fa-solid fa-terminal"></i></span>
+                    <code id="heroCodeTypewriter">{% render 'ajax-cart-drawer', threshold: 499 %}</code>
+                    <span class="stream-cursor"></span>
+                  </div>
+
+                  <!-- Interactive Live Store Switcher Pills -->
+                  <div class="card-footer-info">
+                    <div class="client-tags" id="heroStoreSwitchers">
+                      <button class="tag-pill active" data-slide="0">Divyaprabha Foods</button>
+                      <button class="tag-pill" data-slide="1">The Pickle Affair</button>
+                      <button class="tag-pill" data-slide="2">Pitt &amp; Mitt</button>
+                      <button class="tag-pill" data-slide="3">Royale Galaxy</button>
+                    </div>
+                    <p class="card-hint">
+                      <i class="fa-solid fa-wand-magic-sparkles"></i> Click any brand above to morph live preview · Scroll for 3D depth
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Animated Scroll Down Explorer Indicator -->
+      <a href="#about" class="scroll-down-explorer" id="scrollDownIndicator" aria-label="Scroll down to explore">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <span class="scroll-text">Scroll for 3D Camera Journey</span>
+        <i class="fa-solid fa-Angles-down fa-chevron-down scroll-chevron"></i>
+      </a>
+
+      <!-- Trust Bar / Ticker -->
+      <div class="trust-ticker-container">
+        <div class="ticker-label">Specialized in Tech & E-Commerce Standards:</div>
+        <div class="ticker-track-viewport">
+          <div class="ticker-track">
+            <div class="ticker-item"><i class="fa-brands fa-shopify"></i> Shopify Plus & OS 2.0</div>
+            <div class="ticker-item"><i class="fa-solid fa-code"></i> Custom Liquid Architecture</div>
+            <div class="ticker-item"><i class="fa-brands fa-react"></i> React & Next.js Headless</div>
+            <div class="ticker-item"><i class="fa-brands fa-js"></i> JavaScript ES6+ & Web APIs</div>
+            <div class="ticker-item"><i class="fa-brands fa-figma"></i> Pixel-Perfect Figma Conversion</div>
+            <div class="ticker-item"><i class="fa-solid fa-gauge-high"></i> Core Web Vitals 95+</div>
+            <div class="ticker-item"><i class="fa-solid fa-cart-shopping"></i> Ajax Cart & Custom PDP</div>
+            <div class="ticker-item"><i class="fa-brands fa-wordpress"></i> WooCommerce & Custom WP</div>
+            <!-- Exact duplicate for seamless -50% infinite loop -->
+            <div class="ticker-item"><i class="fa-brands fa-shopify"></i> Shopify Plus & OS 2.0</div>
+            <div class="ticker-item"><i class="fa-solid fa-code"></i> Custom Liquid Architecture</div>
+            <div class="ticker-item"><i class="fa-brands fa-react"></i> React & Next.js Headless</div>
+            <div class="ticker-item"><i class="fa-brands fa-js"></i> JavaScript ES6+ & Web APIs</div>
+            <div class="ticker-item"><i class="fa-brands fa-figma"></i> Pixel-Perfect Figma Conversion</div>
+            <div class="ticker-item"><i class="fa-solid fa-gauge-high"></i> Core Web Vitals 95+</div>
+            <div class="ticker-item"><i class="fa-solid fa-cart-shopping"></i> Ajax Cart & Custom PDP</div>
+            <div class="ticker-item"><i class="fa-brands fa-wordpress"></i> WooCommerce & Custom WP</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION: WHO I AM & E-COMMERCE PHILOSOPHY -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Bridging High-End Design With Scalable Code</h2>
+          <p class="section-subtitle">
+            I don’t just write code — I build tailored e-commerce journeys that convert casual visitors into repeat buyers.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card glass-panel" data-tilt>
+            <div class="about-icon-wrapper">
+              <i class="fa-solid fa-compass-drafting"></i>
+            </div>
+            <h3>Figma to Living Store</h3>
+            <p>
+              I respect designers’ vision down to every pixel, kerning, micro-transition, and responsive breakpoint. Auto layouts in Figma translate cleanly into modular Shopify sections without compromise.
+            </p>
+          </div>
+
+          <div class="about-card glass-panel" data-tilt>
+            <div class="about-icon-wrapper">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h3>Engineered for Speed</h3>
+            <p>
+              Bloated apps destroy conversion rates. I engineer lightweight custom Liquid logic, optimize asset delivery, and reduce external app bloat to keep load times under 1.5 seconds on real 4G/5G mobile connections.
+            </p>
+          </div>
+
+          <div class="about-card glass-panel" data-tilt>
+            <div class="about-icon-wrapper">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Conversion Rate Focused (CRO)</h3>
+            <p>
+              Every layout decision has a commercial purpose: sticky add-to-carts, dynamic bundle builders, slide-out cart upsells, and trust-building social proof modules that tangibly lift Average Order Value (AOV).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE SERVICES / EXPERTISE (SHOPIFY, CUSTOM DEV, WEBSITE DEV) -->
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Capabilities</span>
+          <h2 class="section-title">What I Build & Deliver</h2>
+          <p class="section-subtitle">
+            Three pillars of engineering designed for modern D2C brands and forward-thinking digital agencies.
+          </p>
+        </div>
+
+        <div class="services-list">
+          
+          <!-- Service 1: Shopify Development -->
+          <div class="service-row glass-panel">
+            <div class="service-left">
+              <div class="service-number">01</div>
+              <div class="service-badge-icon"><i class="fa-brands fa-shopify"></i></div>
+              <h3 class="service-title">Shopify & OS 2.0 Theme Development</h3>
+              <p class="service-desc">
+                Clean, modular Liquid development utilizing Online Store 2.0 JSON templates, custom section schemas, dynamic blocks, and deep merchant customization settings without code lock-in.
+              </p>
+              <ul class="feature-bullets">
+                <li><i class="fa-solid fa-circle-check"></i> Bespoke Shopify Themes from Figma / Adobe XD</li>
+                <li><i class="fa-solid fa-circle-check"></i> AJAX Slide-out Cart with Tiered Free Shipping & Upsells</li>
+                <li><i class="fa-solid fa-circle-check"></i> Custom Product Options, Swatches & Bundle Builders</li>
+                <li><i class="fa-solid fa-circle-check"></i> Metafields & Metaobjects Architecture for custom content</li>
+              </ul>
+            </div>
+            <div class="service-right">
+              <div class="service-preview-card">
+                <div class="card-pill">Shopify Native</div>
+                <h4>Architecture Blueprint</h4>
+                <div class="code-preview-snippet">
+                  <code>
+                    <span class="code-comment">{%- comment -%} Custom High-Converting PDP {%- endcomment -%}</span><br>
+                    <span class="code-keyword">{% render</span> <span class="code-string">'custom-sticky-cart'</span>, product: product <span class="code-keyword">%}</span><br>
+                    <span class="code-keyword">{% for</span> block in section.blocks <span class="code-keyword">%}</span><br>
+                    &nbsp;&nbsp;<span class="code-keyword">{% case</span> block.type <span class="code-keyword">%}</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">{% when</span> <span class="code-string">'bundle_selector'</span> <span class="code-keyword">%}</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;div</span> <span class="code-attr">class=</span><span class="code-string">"dynamic-bundle"</span><span class="code-tag">&gt;</span>...<span class="code-tag">&lt;/div&gt;</span>
+                  </code>
+                </div>
+                <div class="metric-highlight">
+                  <i class="fa-solid fa-chart-simple text-accent"></i>
+                  <span>Zero bloat · 100% Theme Store compliant standards</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 2: Custom Development -->
+          <div class="service-row glass-panel">
+            <div class="service-left">
+              <div class="service-number">02</div>
+              <div class="service-badge-icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <h3 class="service-title">Custom Development & Web Applications</h3>
+              <p class="service-desc">
+                When off-the-shelf themes or apps hit their limit, I engineer custom web applications, bespoke APIs, custom frontend logic, and third-party integrations that give brands complete freedom.
+              </p>
+              <ul class="feature-bullets">
+                <li><i class="fa-solid fa-circle-check"></i> React.js, Next.js & Headless Storefronts (Shopify Storefront API)</li>
+                <li><i class="fa-solid fa-circle-check"></i> Custom Webhook integrations, ERP & Inventory sync</li>
+                <li><i class="fa-solid fa-circle-check"></i> Interactive 3D product visualizers & configurators (Three.js)</li>
+                <li><i class="fa-solid fa-circle-check"></i> Bespoke payment gateway, courier & WhatsApp notification pipelines</li>
+              </ul>
+            </div>
+            <div class="service-right">
+              <div class="service-preview-card">
+                <div class="card-pill">Full-Stack Capability</div>
+                <h4>API & Headless Integration</h4>
+                <div class="code-preview-snippet">
+                  <code>
+                    <span class="code-keyword">const</span> cart = <span class="code-keyword">await</span> storefront.mutate({<br>
+                    &nbsp;&nbsp;mutation: CART_CREATE_MUTATION,<br>
+                    &nbsp;&nbsp;variables: { input: { lines: [selectedVariant] } }<br>
+                    });<br>
+                    <span class="code-comment">// Sub-200ms headless checkout dispatch</span><br>
+                    dispatchAnalyticsEvent(<span class="code-string">'add_to_cart_instant'</span>);
+                  </code>
+                </div>
+                <div class="metric-highlight">
+                  <i class="fa-solid fa-shield-halved text-accent"></i>
+                  <span>Secure, scalable, decoupled frontend & backend</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 3: Website & Landing Page Development -->
+          <div class="service-row glass-panel">
+            <div class="service-left">
+              <div class="service-number">03</div>
+              <div class="service-badge-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h3 class="service-title">High-Speed Landing Pages & Web Development</h3>
+              <p class="service-desc">
+                Turn paid ad traffic into customers with bespoke campaign pages, direct response landing pages, and editorial brand websites built within <strong>2 to 3 days</strong>.
+              </p>
+              <ul class="feature-bullets">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>2 to 3 Days Average Turnaround</strong> from Figma to Live URL</li>
+                <li><i class="fa-solid fa-circle-check"></i> High-performance CSS3, GSAP scroll micro-animations</li>
+                <li><i class="fa-solid fa-circle-check"></i> Mobile-first architecture tested on 20+ device viewports</li>
+                <li><i class="fa-solid fa-circle-check"></i> Direct integration with Meta Pixel, Google Tag Manager & Clarity</li>
+              </ul>
+            </div>
+            <div class="service-right">
+              <div class="service-preview-card">
+                <div class="card-pill">Speed & Ad Readiness</div>
+                <h4>Lighthouse Score Benchmark</h4>
+                <div class="lighthouse-badges-grid">
+                  <div class="lh-circle">
+                    <span class="lh-score">99</span>
+                    <span class="lh-label">Performance</span>
+                  </div>
+                  <div class="lh-circle">
+                    <span class="lh-score">100</span>
+                    <span class="lh-label">Accessibility</span>
+                  </div>
+                  <div class="lh-circle">
+                    <span class="lh-score">100</span>
+                    <span class="lh-label">Best Practices</span>
+                  </div>
+                  <div class="lh-circle">
+                    <span class="lh-score">100</span>
+                    <span class="lh-label">SEO</span>
+                  </div>
+                </div>
+                <div class="metric-highlight">
+                  <i class="fa-solid fa-stopwatch text-accent"></i>
+                  <span>Ships in 48-72 hours · Tested for rapid marketing campaigns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS & CASE STUDIES -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <span class="section-tag">Featured Portfolio</span>
+            <h2 class="section-title">Real Stores. Real Impact.</h2>
+            <p class="section-subtitle">
+              Live e-commerce stores, custom Shopify architectures, and high-converting landing pages.
+            </p>
+          </div>
+          
+          <!-- Category Filter Tabs -->
+          <div class="filter-tab-group" id="projectFilterGroup">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="shopify">Shopify Stores</button>
+            <button class="filter-btn" data-filter="custom">Custom Web Dev</button>
+            <button class="filter-btn" data-filter="landing">Landing Pages</button>
+          </div>
+        </div>
+
+        <!-- Projects Grid Container -->
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Dynamically populated or rendered static items with 3D tilt -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 3D STORE ARCHITECTURE EXPLORER -->
+    <section class="section tech-section" id="tech">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Developer Stack</span>
+          <h2 class="section-title">Built With Modern, Scalable Technologies</h2>
+          <p class="section-subtitle">
+            Every tool in my arsenal is chosen for reliability, developer velocity, and blazing performance.
+          </p>
+        </div>
+
+        <div class="tech-matrix-grid">
+          
+          <div class="tech-category glass-panel">
+            <div class="category-header">
+              <i class="fa-brands fa-shopify tech-cat-icon"></i>
+              <h3>Shopify Ecosystem</h3>
+            </div>
+            <div class="tech-pill-list">
+              <span class="tech-badge">Shopify OS 2.0</span>
+              <span class="tech-badge">Shopify Liquid</span>
+              <span class="tech-badge">Storefront API (GraphQL)</span>
+              <span class="tech-badge">Ajax Cart API</span>
+              <span class="tech-badge">Shopify CLI</span>
+              <span class="tech-badge">Metafields & Objects</span>
+              <span class="tech-badge">Shopify Flow</span>
+              <span class="tech-badge">Klaviyo & App Integrations</span>
+            </div>
+          </div>
+
+          <div class="tech-category glass-panel">
+            <div class="category-header">
+              <i class="fa-solid fa-code tech-cat-icon"></i>
+              <h3>Frontend & 3D Web</h3>
+            </div>
+            <div class="tech-pill-list">
+              <span class="tech-badge">JavaScript (ES6+)</span>
+              <span class="tech-badge">Three.js (WebGL 3D)</span>
+              <span class="tech-badge">HTML5 / CSS3 Grid</span>
+              <span class="tech-badge">Tailwind CSS</span>
+              <span class="tech-badge">GSAP / ScrollTrigger</span>
+              <span class="tech-badge">React.js / Next.js</span>
+              <span class="tech-badge">Mobile-First RWD</span>
+              <span class="tech-badge">Web Accessibility (a11y)</span>
+            </div>
+          </div>
+
+          <div class="tech-category glass-panel">
+            <div class="category-header">
+              <i class="fa-solid fa-server tech-cat-icon"></i>
+              <h3>Backend & Performance</h3>
+            </div>
+            <div class="tech-pill-list">
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">REST & GraphQL APIs</span>
+              <span class="tech-badge">Webhooks Architecture</span>
+              <span class="tech-badge">Google Core Web Vitals</span>
+              <span class="tech-badge">CDN & Image Optimization</span>
+              <span class="tech-badge">Git & Version Control</span>
+              <span class="tech-badge">Vercel / Netlify Deploy</span>
+              <span class="tech-badge">WordPress & WooCommerce</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Code Showcase Tabs -->
+        <div class="code-terminal-wrapper glass-panel">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-tabs">
+              <button class="t-tab active" data-tab="liquid">cart-drawer.liquid</button>
+              <button class="t-tab" data-tab="api">ajax-cart.js</button>
+              <button class="t-tab" data-tab="schema">section-schema.json</button>
+            </div>
+            <button class="btn-copy-code" id="btnCopyCode" title="Copy code snippet">
+              <i class="fa-regular fa-copy"></i> <span>Copy</span>
+            </button>
+          </div>
+          <div class="terminal-body">
+            <pre id="terminalCodeDisplay"><code class="language-liquid"></code></pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DEVELOPMENT PROCESS & DELIVERY SPEED -->
+    <section class="section process-section" id="process">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Workflow</span>
+          <h2 class="section-title">How I Take Ideas From Figma to Live Store</h2>
+          <p class="section-subtitle">
+            A battle-tested 4-step workflow that guarantees precision, high speed, and zero friction.
+          </p>
+        </div>
+
+        <div class="process-steps-grid">
+          
+          <div class="step-card glass-panel" data-tilt>
+            <div class="step-badge">Phase 01</div>
+            <div class="step-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3>Figma & Spec Review</h3>
+            <p>
+              Analyze design components, typography hierarchy, responsive states, and e-commerce business goals before writing a single line of code.
+            </p>
+            <div class="step-time"><i class="fa-regular fa-clock"></i> Day 1 (Morning)</div>
+          </div>
+
+          <div class="step-card glass-panel" data-tilt>
+            <div class="step-badge">Phase 02</div>
+            <div class="step-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+            <h3>Modular Architecture</h3>
+            <p>
+              Develop atomic Liquid sections, JSON schemas, dynamic product option switchers, and fluid mobile breakpoints with native Shopify customizers.
+            </p>
+            <div class="step-time"><i class="fa-regular fa-clock"></i> Day 1 - 2</div>
+          </div>
+
+          <div class="step-card glass-panel" data-tilt>
+            <div class="step-badge">Phase 03</div>
+            <div class="step-icon"><i class="fa-solid fa-gauge"></i></div>
+            <h3>Speed & QA Optimization</h3>
+            <p>
+              Audit Core Web Vitals, optimize image srcset formats, verify cart Ajax operations, and test across iOS Safari, Android Chrome, and desktops.
+            </p>
+            <div class="step-time"><i class="fa-regular fa-clock"></i> Day 2 - 3</div>
+          </div>
+
+          <div class="step-card glass-panel" data-tilt>
+            <div class="step-badge">Phase 04</div>
+            <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
+            <h3>Launch & Handover</h3>
+            <p>
+              Deploy to live domain, configure Meta/Google tracking events, and provide straightforward documentation for non-technical team members.
+            </p>
+            <div class="step-time"><i class="fa-regular fa-clock"></i> Launch Ready</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / HIRE ME SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card glass-panel">
+          <div class="contact-header text-center">
+            <span class="section-tag">Let's Connect</span>
+            <h2 class="section-title">Ready to Build High-Impact Stores Together?</h2>
+            <p class="section-subtitle">
+              Whether you need a full custom Shopify 2.0 theme, a 3D interactive landing page, or a dedicated remote developer for your team.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-info-col">
+              <h3>Contact Information</h3>
+              <p>Feel free to reach out via WhatsApp, email, or schedule a quick introductory call.</p>
+
+              <div class="contact-methods">
+                <a href="https://wa.me/919769104020" class="contact-item" target="_blank" rel="noopener noreferrer">
+                  <div class="method-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+                  <div>
+                    <span class="method-label">WhatsApp (Instant)</span>
+                    <strong class="method-val">+91 9769104020</strong>
+                  </div>
+                </a>
+
+                <a href="mailto:jesalp85@gmail.com" class="contact-item">
+                  <div class="method-icon email"><i class="fa-regular fa-envelope"></i></div>
+                  <div>
+                    <span class="method-label">Email Address</span>
+                    <strong class="method-val">jesalp85@gmail.com</strong>
+                  </div>
+                </a>
+
+                <div class="contact-item">
+                  <div class="method-icon location"><i class="fa-solid fa-location-dot"></i></div>
+                  <div>
+                    <span class="method-label">Location / Timezone</span>
+                    <strong class="method-val">India (IST) · 100% Remote Available</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="availability-badge-box">
+                <span class="pulse-dot"></span>
+                <span>Ready to start immediately on full-time or contract roles</span>
+              </div>
+            </div>
+
+            <!-- Interactive Message Form -->
+            <div class="contact-form-col">
+              <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+                <div class="form-group">
+                  <label for="senderName">Your Name / Company *</label>
+                  <input type="text" id="senderName" class="form-control" placeholder="e.g. Rahul Sharma / Acme D2C" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="senderContact">Email or WhatsApp Number *</label>
+                  <input type="text" id="senderContact" class="form-control" placeholder="e.g. hello@brand.com or +91 9876543210" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="projectType">Project / Discussion Type</label>
+                  <select id="projectType" class="form-control">
+                    <option value="shopify">Shopify 2.0 Theme Build</option>
+                    <option value="custom">Custom Web Development</option>
+                    <option value="landing">High-Speed Landing Page (2-3 Days)</option>
+                    <option value="job">Full-Time / Contract Developer Role</option>
+                    <option value="other">General Inquiry</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="senderMessage">Message / Project Brief *</label>
+                  <textarea id="senderMessage" rows="4" class="form-control" placeholder="Tell me about your timeline, design file, or goals..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full btn-submit" id="btnSubmitForm">
+                  <span>Send Message Directly</span>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+                <div id="formFeedback" class="form-feedback"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <span class="logo-mark">JP</span>
+          <span class="footer-name">Jesal Panchal</span>
+        </div>
+        <p class="footer-tagline">
+          Shopify Specialist & Custom Web Engineer. Building stores that load fast, look stunning, and convert like crazy.
+        </p>
+      </div>
+
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Portfolio</a></li>
+            <li><a href="#tech">Tech Stack</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://github.com/Jesalp85/Jesalportfolio" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a></li>
+            <li><a href="https://wa.me/919769104020" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+            <li><a href="mailto:jesalp85@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom-bar container">
+      <p>&copy; 2026 Jesal Panchal. All rights reserved. Crafted with clean code & 3D WebGL.</p>
+      <a href="#hero" class="back-to-top" title="Scroll to top">
+        <span>Back to top</span>
+        <i class="fa-solid fa-chevron-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- PROJECT CASE STUDY MODAL -->
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="modal-dialog glass-panel">
+      <button class="modal-close" onclick="closeProjectModal()" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-content" id="modalContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CDN Scripts for 3D Three.js & Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Project Database & Logic Scripts -->
+  <script src="projects-data.js"></script>
+  <script src="three-scene.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

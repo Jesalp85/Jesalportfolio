@@ -300,7 +300,7 @@ function copyProjectLink(url, btnElement) {
 }
 
 function copyPortfolioLinkDirect(btnElement) {
-  const url = window.location.href || 'https://jesal-portfolio.dev';
+  const url = 'https://jesalportfolio.netlify.app/';
   navigator.clipboard.writeText(url).then(() => {
     const originalHtml = btnElement.innerHTML;
     btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Portfolio Link Copied!';
